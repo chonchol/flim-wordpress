@@ -4,6 +4,7 @@ function enqueue_child_theme_styles() {
   wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
 }
 
+add_post_type_support( 'unite_flims', 'genesis-layouts' );
 
 
 function create_post_type() {
@@ -17,7 +18,8 @@ function create_post_type() {
       ),
       'public' => true,
       'has_archive' => true,
-      'supports'=> array('title', 'editor', 'thumbnail', 'custom-fields'),
+      'hierarchical' => true,
+      'supports'=> array('title', 'editor', 'thumbnail', 'custom-fields', 'post-formats','page-attributes'),
     )
   );
 }
