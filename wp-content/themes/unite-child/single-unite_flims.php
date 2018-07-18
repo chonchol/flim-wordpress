@@ -11,21 +11,17 @@
 <p><strong>Country:</strong>
 	<?php $terms = get_the_terms( $post->ID, 'country' );
 	foreach($terms as $term) { ;?>
-	   	<?php echo $term->name; ?>
+	   	<?php echo $term->name.','; ?>
 	<?php }; ?>
 </p>
 <p><strong>Genre:</strong>
 	<?php $terms = get_the_terms( $post->ID, 'genre' );
 	foreach($terms as $term) { ;?>
-	   	<?php echo $term->name; ?>
+	   	<?php echo $term->name.','; ?>
 	<?php }; ?>
 </p>
-	
+<?php the_meta(); ?>	
 	<?php endwhile; ?>
-
-
-
-
 
 
 <?php get_footer(); ?>

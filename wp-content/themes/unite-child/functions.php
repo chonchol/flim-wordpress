@@ -147,3 +147,26 @@ function create_flim_taxonomies() {
 
 	register_taxonomy( 'actors', 'unite_flims', $args );
 }
+
+
+add_shortcode( 'list-flims', 'flim_listing_shortcode' );
+function flim_listing_shortcode( $atts ) {
+    ob_start();
+    $query = new WP_Query( array(
+        'post_type' => 'unite_flims',
+        'posts_per_page' => 5,
+        'order' => 'DESC',
+    ) );
+    if ( $query->have_posts() ) { ?>
+        <ul class="flims-listing">
+            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+            <li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            </li>
+            <?php endwhile;
+            wp_reset_postdata(); ?>
+        </ul>
+    <?php $myvariable = ob_get_clean();
+    return $myvariable;
+    }
+}
